@@ -2,19 +2,36 @@
   import Button from "./Button.svelte";
   import Line from "./Line.svelte";
   import Screen from "./Screen.svelte";
+
+  let value = '0'
+
+  class Model {
+    value: string
+
+    constructor(value: string = '0'){
+      this.value = value
+    }
+  }
+
+  let obj = new Model()
+  
+  
+  function digitedNumber(number: string) {
+    obj.value += number 
+  }
 </script>
 
 <div class="calculator">
-  <Screen value="0" />
+  <Screen value={obj.value} />
   <Line>
     <Button desta text="AC" tripple={true} />
     <Button op text="/" />
   </Line>
 
   <Line>
-    <Button text="7" />
-    <Button text="8" />
-    <Button text="9" />
+    <Button text="7" onClick={digitedNumber} />
+    <Button text="8" onClick={digitedNumber} />
+    <Button text="9" onClick={digitedNumber} />
     <Button op text="*" />
   </Line>
 
